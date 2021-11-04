@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DayPlannerApplication">
         <activity
+            android:name=".view.DetailTaskActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".view.AddTaskActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

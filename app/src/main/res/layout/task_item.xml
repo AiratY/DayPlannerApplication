@@ -7,15 +7,25 @@
     android:layout_height="60dp">
 
     <TextView
-        android:id="@+id/taskTimeTextView"
+        android:id="@+id/taskStartTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@string/task_time_content_default"
+        android:text="@string/task_start_time_content_default"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@id/taskEndTimeTextView"
+        app:layout_constraintEnd_toStartOf="@id/taskNameTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/taskEndTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/task_end_time_content_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/taskNameTextView"/>
+        app:layout_constraintTop_toBottomOf="@id/taskStartTimeTextView" />
 
     <TextView
         android:id="@+id/taskNameTextView"
@@ -24,6 +34,6 @@
         android:layout_margin="8dp"
         android:text="@string/task_name_content_default"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/taskTimeTextView"
+        app:layout_constraintStart_toEndOf="@+id/taskStartTimeTextView"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,9 +2,11 @@ package com.example.dayplannerapplication.presenter
 
 import android.content.Context
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.example.dayplannerapplication.MainActivity
 import com.example.dayplannerapplication.data.DataSource
 import com.example.dayplannerapplication.data.Task
+import com.example.dayplannerapplication.view.DetailTaskActivity
 
 class MainPresenter {
 
@@ -42,16 +44,15 @@ class MainPresenter {
         loadListTask()
     }
 
-    fun adapterClick(applicationContext: Context, task: Task) {
-        /*
-       val intent = Intent(this, FlowerDetailActivity()::class.java)
-       intent.putExtra(FLOWER_ID, flower.id)
-       startActivity(intent)
-        */
-        Toast.makeText(applicationContext, "Click on Presenter", Toast.LENGTH_SHORT).show()
+    fun adapterClick(task: Task) {
+        view?.moveOnDetailTaskActivity()
     }
 
     fun calendarClick(year: Int, month: Int, day: Int) {
         loadListTaskForDateTime()
+    }
+
+    fun fabOnClick() {
+        view?.moveOnAddTaskActivity()
     }
 }

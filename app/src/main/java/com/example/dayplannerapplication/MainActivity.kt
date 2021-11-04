@@ -1,6 +1,8 @@
 package com.example.dayplannerapplication
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.CalendarView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dayplannerapplication.data.Task
 import com.example.dayplannerapplication.presenter.MainPresenter
 import com.example.dayplannerapplication.taskList.TasksAdapter
+import com.example.dayplannerapplication.view.AddTaskActivity
+import com.example.dayplannerapplication.view.DetailTaskActivity
 
 class MainActivity : AppCompatActivity() {
     /*
@@ -26,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         mainPresenter = MainPresenter()
         val calendarView: CalendarView = findViewById(R.id.calendarView)
-        tasksAdapter = TasksAdapter { task -> mainPresenter.adapterClick(applicationContext, task) }
+        tasksAdapter = TasksAdapter { task -> mainPresenter.adapterClick(task) }
         val recyclerView: RecyclerView = findViewById(R.id.tasksRecyclerView)
 
         mainPresenter.attachView(this)
@@ -35,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = tasksAdapter
 
         mainPresenter.viewIsReady()
+
+        val fab: View = findViewById(R.id.fab)
+        fab.setOnClickListener {
+            mainPresenter.fabOnClick()
+        }
 
         /*
         tasksListViewModel.tasksLiveData.observe(this, {
@@ -56,9 +65,18 @@ class MainActivity : AppCompatActivity() {
     fun showMessageNoTask() {
         Toast.makeText(applicationContext, "No tasks", Toast.LENGTH_SHORT).show()
     }
+    fun moveOnDetailTaskActivity(){
+        val intent = Intent(this, DetailTaskActivity()::class.java)
+        //intent.putExtra(FLOWER_ID, flower.id)
+        startActivity(intent)
+    }
 
     override fun onDestroy() {
         super.onDestroy()
         mainPresenter.detachView()
+    }
+
+    fun moveOnAddTaskActivity() {
+        startActivity(Intent(this, AddTaskActivity::class.java))
     }
 }
