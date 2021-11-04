@@ -1,6 +1,7 @@
 package com.example.dayplannerapplication
 
 import android.os.Bundle
+import android.widget.CalendarView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        init()
+    }
+    private fun init() {
+        val calendarView: CalendarView = findViewById(R.id.calendarView)
         val tasksAdapter = TasksAdapter { task -> adapterOnClick(task) }
 
         val recyclerView: RecyclerView = findViewById(R.id.tasksRecyclerView)
@@ -33,6 +37,11 @@ class MainActivity : AppCompatActivity() {
                 tasksAdapter.submitList(it as MutableList<Task>)
             }
         })
+
+        calendarView.setOnDateChangeListener { calendarView, year, month, day ->
+            val monthNormal = month + 1 // Отсчёт месяцев с 0
+            Toast.makeText(this, "Click on Calendar Day $day Month $monthNormal Year $year", Toast.LENGTH_SHORT).show()
+        }
     }
     private fun adapterOnClick(task: Task) {
         /*
