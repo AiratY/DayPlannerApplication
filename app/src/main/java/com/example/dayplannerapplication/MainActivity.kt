@@ -65,9 +65,9 @@ class MainActivity : AppCompatActivity() {
     fun showMessageNoTask() {
         Toast.makeText(applicationContext, "No tasks", Toast.LENGTH_SHORT).show()
     }
-    fun moveOnDetailTaskActivity(){
+    fun moveOnDetailTaskActivity(taskId: Int) {
         val intent = Intent(this, DetailTaskActivity()::class.java)
-        //intent.putExtra(FLOWER_ID, flower.id)
+        intent.putExtra(TASK_ID, taskId)
         startActivity(intent)
     }
 

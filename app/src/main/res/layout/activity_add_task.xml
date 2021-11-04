@@ -6,13 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".view.AddTaskActivity">
 
-    <TextView
-        android:id="@+id/textView"
+
+    <EditText
+        android:id="@+id/nameTaskEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/edit_text_margin"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/tittle_name_task"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/descTaskEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/edit_text_margin"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/tittle_description_task"
+        app:layout_constraintTop_toBottomOf="@+id/nameTaskEditText"
+        tools:layout_editor_absoluteX="158dp" />
+
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AddTaskActivity"
+        android:text="@string/text_button_save"
+        android:layout_marginBottom="@dimen/button_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dayplannerapplication.FORMAT_TIME
 import com.example.dayplannerapplication.R
 import com.example.dayplannerapplication.data.Task
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import com.example.dayplannerapplication.presenter.usecase.ConvertDateToFormat
 import java.util.*
 
 class TasksAdapter(private val onClick: (Task) -> Unit) :
@@ -33,14 +33,9 @@ class TasksAdapter(private val onClick: (Task) -> Unit) :
 
         fun bind(task: Task) {
             currentTask = task
-
             taskNameTextView.text = task.name
-
-
-            val dateFormat: DateFormat = SimpleDateFormat("HH:mm")
-            val date: Date = Date(task.dateStart.time)
-            taskStartTimeTextView.text = dateFormat.format(date)
-            taskEndTimeTextView.text = dateFormat.format(Date(task.dateEnd.time))
+            taskStartTimeTextView.text = ConvertDateToFormat().execute(task.dateStart, FORMAT_TIME)
+            taskEndTimeTextView.text = ConvertDateToFormat().execute(task.dateEnd, FORMAT_TIME)
         }
     }
 

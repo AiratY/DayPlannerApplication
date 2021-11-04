@@ -1,12 +1,8 @@
 package com.example.dayplannerapplication.presenter
 
-import android.content.Context
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.example.dayplannerapplication.MainActivity
 import com.example.dayplannerapplication.data.DataSource
 import com.example.dayplannerapplication.data.Task
-import com.example.dayplannerapplication.view.DetailTaskActivity
 
 class MainPresenter {
 
@@ -45,7 +41,7 @@ class MainPresenter {
     }
 
     fun adapterClick(task: Task) {
-        view?.moveOnDetailTaskActivity()
+        view?.moveOnDetailTaskActivity(task.id)
     }
 
     fun calendarClick(year: Int, month: Int, day: Int) {

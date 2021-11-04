@@ -15,7 +15,7 @@ fun tasksList(): List<Task> {
             id = 2,
             dateStart = Timestamp(147600000),
             dateEnd = Timestamp(147600000),
-            name = "Поход в магазин",
+            name = "Занятие спортом",
             description = "Купить: батон, молоко, чай"
         ),
         Task(
@@ -46,5 +46,6 @@ fun tasksList(): List<Task> {
             name = "Поход в магазин",
             description = "Купить: батон, молоко, чай"
         ),
+
     )
 }

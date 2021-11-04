@@ -1,3 +1,10 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="edit_text_margin">16dp</dimen>
+    <dimen name="button_margin">16dp</dimen>
+    <dimen name="text_view_margin">16dp</dimen>
+
+    <dimen name="text_size">16dp</dimen>
+
+    <dimen name="button_weight">150dp</dimen>
 </resources>

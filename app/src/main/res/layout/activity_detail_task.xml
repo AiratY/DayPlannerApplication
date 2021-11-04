@@ -7,12 +7,51 @@
     tools:context=".view.DetailTaskActivity">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:id="@+id/dateTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DetailTaskActivity"
+        android:text="@string/task_date_content_default"
+        android:layout_margin="@dimen/text_view_margin"
+        app:layout_constraintBottom_toTopOf="@id/timeTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_time_content_default"
+        android:layout_margin="@dimen/text_view_margin"
+        app:layout_constraintTop_toBottomOf="@id/dateTextView" />
+    <TextView
+        android:id="@+id/nameTaskTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_name_content_default"
+        android:layout_margin="@dimen/text_view_margin"
+        app:layout_constraintTop_toBottomOf="@id/timeTextView" />
+    <TextView
+        android:id="@+id/descTaskTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_desc_content_default"
+        android:layout_margin="@dimen/text_view_margin"
+        app:layout_constraintTop_toBottomOf="@id/nameTaskTextView" />
+
+    <Button
+        android:id="@+id/changeTaskButton"
+        android:layout_width="@dimen/button_weight"
+        android:layout_height="wrap_content"
+        android:text="@string/text_button_change"
+        android:layout_margin="@dimen/button_margin"
+        app:layout_constraintBottom_toTopOf="@id/deleteTaskButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/deleteTaskButton"
+        android:layout_width="@dimen/button_weight"
+        android:layout_height="wrap_content"
+        android:text="@string/text_button_delete"
+        android:layout_margin="@dimen/button_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
