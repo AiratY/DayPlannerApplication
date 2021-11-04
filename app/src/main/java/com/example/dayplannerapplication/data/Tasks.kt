@@ -1,9 +1,8 @@
 package com.example.dayplannerapplication.data
 
-import android.content.res.Resources
 import java.sql.Timestamp
 
-fun tasksList(resource: Resources): List<Task> {
+fun tasksList(): List<Task> {
     return listOf(
         Task(
             id = 1,

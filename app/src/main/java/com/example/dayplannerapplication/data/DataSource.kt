@@ -1,11 +1,9 @@
 package com.example.dayplannerapplication.data
 
-import android.content.res.Resources
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class DataSource(resources: Resources) {
-    private val initialTaskList = tasksList(resources)
+class DataSource() {
+    private val initialTaskList = tasksList()
     private val tasksLiveData = MutableLiveData(initialTaskList)
 
     fun addTask(task: Task) {
@@ -35,16 +33,19 @@ class DataSource(resources: Resources) {
         return null
     }
 
-    fun getTaskList(): LiveData<List<Task>> {
-        return tasksLiveData
+    fun getTaskList(): List<Task> {
+        return initialTaskList
+    }
+    fun getTaskListForDateTime(): List<Task> {
+        return listOf(initialTaskList[0], initialTaskList[1])
     }
 
     companion object {
         private var INSTANCE: DataSource? = null
 
-        fun getDataSource(resources: Resources): DataSource {
+        fun getDataSource(): DataSource {
             return synchronized(DataSource::class) {
-                val newInstance = INSTANCE ?: DataSource(resources)
+                val newInstance = INSTANCE ?: DataSource()
                 INSTANCE = newInstance
                 newInstance
             }

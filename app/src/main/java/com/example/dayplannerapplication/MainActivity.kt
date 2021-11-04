@@ -3,21 +3,20 @@ package com.example.dayplannerapplication
 import android.os.Bundle
 import android.widget.CalendarView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dayplannerapplication.data.Task
+import com.example.dayplannerapplication.presenter.MainPresenter
 import com.example.dayplannerapplication.taskList.TasksAdapter
-import com.example.dayplannerapplication.taskList.TasksListViewModel
-import com.example.dayplannerapplication.taskList.TasksListViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-
-    // private val newFlowerActivityRequestCode = 1
+    /*
     private val tasksListViewModel by viewModels<TasksListViewModel> {
         TasksListViewModelFactory(this)
-    }
+    }*/
+    private lateinit var tasksAdapter: TasksAdapter
+    private lateinit var mainPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,30 +24,41 @@ class MainActivity : AppCompatActivity() {
         init()
     }
     private fun init() {
+        mainPresenter = MainPresenter()
         val calendarView: CalendarView = findViewById(R.id.calendarView)
-        val tasksAdapter = TasksAdapter { task -> adapterOnClick(task) }
-
+        tasksAdapter = TasksAdapter { task -> mainPresenter.adapterClick(applicationContext, task) }
         val recyclerView: RecyclerView = findViewById(R.id.tasksRecyclerView)
+
+        mainPresenter.attachView(this)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = tasksAdapter
 
+        mainPresenter.viewIsReady()
+
+        /*
         tasksListViewModel.tasksLiveData.observe(this, {
             it?.let {
                 tasksAdapter.submitList(it as MutableList<Task>)
             }
-        })
+        })*/
 
         calendarView.setOnDateChangeListener { calendarView, year, month, day ->
             val monthNormal = month + 1 // Отсчёт месяцев с 0
-            Toast.makeText(this, "Click on Calendar Day $day Month $monthNormal Year $year", Toast.LENGTH_SHORT).show()
+            mainPresenter.calendarClick(year, monthNormal, day)
         }
     }
-    private fun adapterOnClick(task: Task) {
-        /*
-        val intent = Intent(this, FlowerDetailActivity()::class.java)
-        intent.putExtra(FLOWER_ID, flower.id)
-        startActivity(intent)
-         */
-        Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show()
+
+    fun showTasks(taskList: List<Task>) {
+        tasksAdapter.submitList(taskList)
+    }
+
+    fun showMessageNoTask() {
+        Toast.makeText(applicationContext, "No tasks", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainPresenter.detachView()
     }
 }

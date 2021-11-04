@@ -11,7 +11,7 @@ class TasksListViewModelFactory(private val context: Context) : ViewModelProvide
         if (modelClass.isAssignableFrom(TasksListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return TasksListViewModel(
-                dataSource = DataSource.getDataSource(context.resources)
+                dataSource = DataSource.getDataSource()
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
