@@ -4,8 +4,7 @@ import com.example.dayplannerapplication.data.DataSource
 import com.example.dayplannerapplication.data.Task
 import com.example.dayplannerapplication.view.AddTaskContractView
 import com.example.dayplannerapplication.view.models.dataTask
-import com.example.dayplannerapplication.view.models.descTask
-import java.util.*
+import java.util.Date
 import kotlin.random.Random
 
 class AddTaskPresenter {
@@ -18,7 +17,7 @@ class AddTaskPresenter {
         view = contractView
         dataSource = view?.getContext()?.let { DataSource.getDataSource(it) }
         val taskId = view?.checkId()
-        if (taskId != null && taskId != -1){
+        if (taskId != null && taskId != -1) {
             getId(taskId)
         }
     }
@@ -50,7 +49,7 @@ class AddTaskPresenter {
         if (dataTask.name.isEmpty()) {
             view?.showMessageNullName()
         } else {
-            val id = if(isChange && taskId != -1){
+            val id = if (isChange && taskId != -1) {
                 taskId
             } else {
                 Random.nextInt()
@@ -62,7 +61,7 @@ class AddTaskPresenter {
                 name = dataTask.name,
                 description = dataTask.description
             )
-            if(isChange){
+            if (isChange) {
                 dataSource?.changeTask(task)
             } else {
                 dataSource?.addTask(task)

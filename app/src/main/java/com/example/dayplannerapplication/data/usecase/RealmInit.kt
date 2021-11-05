@@ -6,7 +6,7 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 
 class RealmInit() {
-    fun execute(context: Context): Realm{
+    fun execute(context: Context) {
         Realm.init(context)
 
         val config = RealmConfiguration
@@ -16,6 +16,6 @@ class RealmInit() {
             .allowWritesOnUiThread(true)
             .build()
         Realm.setDefaultConfiguration(config)
-        return  Realm.getInstance(config)
+        //return Realm.getInstance(config)
     }
 }

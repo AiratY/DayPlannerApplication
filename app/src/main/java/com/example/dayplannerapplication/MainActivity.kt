@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CalendarView
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,13 +16,14 @@ import com.example.dayplannerapplication.view.AddTaskActivity
 import com.example.dayplannerapplication.view.DetailTaskActivity
 import com.example.dayplannerapplication.view.MainContractView
 
-class MainActivity : AppCompatActivity(), MainContractView{
+class MainActivity : AppCompatActivity(), MainContractView {
     /*
     private val tasksListViewModel by viewModels<TasksListViewModel> {
         TasksListViewModelFactory(this)
     }*/
     private lateinit var tasksAdapter: TasksAdapter
     private lateinit var mainPresenter: MainPresenter
+    private lateinit var message: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity(), MainContractView{
         val calendarView: CalendarView = findViewById(R.id.calendarView)
         tasksAdapter = TasksAdapter { task -> mainPresenter.adapterClick(task) }
         val recyclerView: RecyclerView = findViewById(R.id.tasksRecyclerView)
-
+        message = findViewById(R.id.messageTextView)
         mainPresenter.attachView(this)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -55,17 +56,21 @@ class MainActivity : AppCompatActivity(), MainContractView{
         })*/
 
         calendarView.setOnDateChangeListener { calendarView, year, month, day ->
-            val monthNormal = month + 1 // Отсчёт месяцев с 0
+            val monthNormal = month // Отсчёт месяцев с 0
             mainPresenter.calendarClick(year, monthNormal, day)
         }
     }
 
     override fun showTasks(taskList: List<Task>) {
+        message.visibility = View.INVISIBLE
         tasksAdapter.submitList(taskList)
+        //mainPresenter.close()
     }
 
     override fun showMessageNoTask() {
-        Toast.makeText(applicationContext, "No tasks", Toast.LENGTH_SHORT).show()
+        message.visibility = View.VISIBLE
+        tasksAdapter.submitList(null)
+        // Toast.makeText(applicationContext, "No tasks", Toast.LENGTH_SHORT).show()
     }
     override fun moveOnDetailTaskActivity(taskId: Int) {
         val intent = Intent(this, DetailTaskActivity()::class.java)
@@ -82,5 +87,5 @@ class MainActivity : AppCompatActivity(), MainContractView{
         startActivity(Intent(this, AddTaskActivity::class.java))
     }
 
-    override fun getContext() : Context = applicationContext
+    override fun getContext(): Context = applicationContext
 }

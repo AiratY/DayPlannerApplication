@@ -3,7 +3,6 @@ package com.example.dayplannerapplication.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
@@ -14,7 +13,6 @@ import com.example.dayplannerapplication.R
 import com.example.dayplannerapplication.TASK_ID
 import com.example.dayplannerapplication.presenter.AddTaskPresenter
 import com.example.dayplannerapplication.view.models.dataTask
-import com.example.dayplannerapplication.view.models.descTask
 import java.util.*
 
 class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
@@ -46,12 +44,12 @@ class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
     override fun getData() {
         val name = nameEditView.text.toString()
         val desc = descEditView.text.toString()
-        val year = datePicker.year-1900
+        val year = datePicker.year - 1900
         val month = datePicker.month
         val day = datePicker.dayOfMonth
         val hour = timePicker.hour
         val minutes = timePicker.minute
-        val dataTask = dataTask(Date(year,month,day, hour, minutes),Date(year,month,day, hour+1, minutes) , name = name, description = desc)
+        val dataTask = dataTask(Date(year, month, day, hour, minutes), Date(year, month, day, hour + 1, minutes), name = name, description = desc)
         presenter.setData(dataTask)
     }
 
@@ -70,7 +68,7 @@ class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
 
     override fun getContext(): Context = applicationContext
 
-    override fun checkId() : Int {
+    override fun checkId(): Int {
         val bundle: Bundle? = intent.extras
         if (bundle != null) {
             return bundle.getInt(TASK_ID)

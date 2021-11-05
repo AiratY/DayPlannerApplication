@@ -7,13 +7,16 @@ import com.example.dayplannerapplication.data.usecase.RealmClose
 import com.example.dayplannerapplication.data.usecase.RealmInit
 import io.realm.Realm
 import io.realm.kotlin.where
-import java.sql.Timestamp
 
 class DataSource(val context: Context) {
-    //private val initialTaskList = tasksList()
-    //private val tasksLiveData = MutableLiveData(initialTaskList)
-    private var realm: Realm = RealmInit().execute(context)
+    // private val initialTaskList = tasksList()
+    // private val tasksLiveData = MutableLiveData(initialTaskList)
+    private lateinit var realm: Realm
 
+    init{
+        RealmInit().execute(context)
+        realm = Realm.getDefaultInstance()
+    }
     fun addTask(task: Task) {
         realm.executeTransaction { transactionRealm ->
             transactionRealm.insert(task)
@@ -22,8 +25,8 @@ class DataSource(val context: Context) {
 
     fun changeTask(task: Task) {
         realm.executeTransaction { transactionRealm ->
-            val changeTask : Task? = transactionRealm.where<Task>().equalTo(KEY_ID_TASK, task.id).findFirst()
-            changeTask?.let{
+            val changeTask: Task? = transactionRealm.where<Task>().equalTo(KEY_ID_TASK, task.id).findFirst()
+            changeTask?.let {
                 it.name = task.name
                 it.description = task.description
                 it.dateStart = task.dateStart
@@ -42,19 +45,21 @@ class DataSource(val context: Context) {
         return realm.where<Task>().equalTo(KEY_ID_TASK, id).findFirst()
     }
 
-    fun getTaskList(): List<Task> {
+    /*fun getTaskList(): List<Task> {
         return realm.where<Task>().findAll()
-    }
+
+    }*/
     fun getTaskListForDateTime(dateStart: Long, dateEnd: Long): List<Task> {
-        val someRealm = Realm.getDefaultInstance()
-        //val taskList = realm.where<Task>().between(KEY_DATE_TASK, dateStart, dateEnd).findAllAsync()
-        val taskList = someRealm.where<Task>().findAll()
-        someRealm.close()
-        return taskList
+
+        val taskList:List<Task> = realm.where<Task>().between(KEY_DATE_TASK, dateStart, dateEnd).findAll().sort(KEY_DATE_TASK)
+       //val taskList = someRealm.where<Task>().findAll()
+        val list = taskList.toList()
+        //realm.close()
+        return list
     }
 
-    fun closeRealmConnection(){
-        RealmClose().execute(realm)
+    fun closeRealmConnection() {
+       RealmClose().execute(realm)
     }
 
     companion object {

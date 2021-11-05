@@ -1,6 +1,5 @@
 package com.example.dayplannerapplication.data
 
-import java.sql.Timestamp
 /*
 fun tasksList(): List<Task> {
     return listOf(

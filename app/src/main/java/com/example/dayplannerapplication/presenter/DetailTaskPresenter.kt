@@ -1,6 +1,5 @@
 package com.example.dayplannerapplication.presenter
 
-import android.provider.ContactsContract
 import com.example.dayplannerapplication.FORMAT_DATE
 import com.example.dayplannerapplication.FORMAT_TIME
 import com.example.dayplannerapplication.data.DataSource
@@ -8,7 +7,6 @@ import com.example.dayplannerapplication.data.Task
 import com.example.dayplannerapplication.presenter.usecase.ConvertDateToFormat
 import com.example.dayplannerapplication.view.DetailTaskContractView
 import com.example.dayplannerapplication.view.models.descTask
-import java.sql.Timestamp
 import java.util.Date
 
 class DetailTaskPresenter {

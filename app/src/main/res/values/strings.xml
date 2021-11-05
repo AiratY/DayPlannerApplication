@@ -14,6 +14,7 @@
 
     <string name="tittle_name_task">Название</string>
     <string name="tittle_description_task">Описание</string>
+    <string name="text_message_text_view">Нет задач</string>
     <string name="text_button_save">Сохранить</string>
     <string name="text_button_change">Изменить</string>
     <string name="text_button_delete">Удалить</string>

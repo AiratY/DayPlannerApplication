@@ -2,10 +2,9 @@ package com.example.dayplannerapplication.data
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import java.sql.Timestamp
-import java.util.*
+import java.util.Date
 
-open class Task()  : RealmObject() {
+open class Task() : RealmObject() {
     @PrimaryKey
     var id: Int = 0
     var dateStart: Long = Date().time
@@ -14,7 +13,7 @@ open class Task()  : RealmObject() {
     var description: String = " "
     constructor(
         id: Int,
-        dateStart:Long,
+        dateStart: Long,
         dateEnd: Long,
         name: String,
         description: String

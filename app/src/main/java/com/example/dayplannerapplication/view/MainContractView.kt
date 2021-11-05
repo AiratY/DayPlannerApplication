@@ -8,5 +8,5 @@ interface MainContractView {
     fun showTasks(taskList: List<Task>)
     fun moveOnDetailTaskActivity(id: Int)
     fun moveOnAddTaskActivity()
-    fun getContext() : Context
+    fun getContext(): Context
 }

@@ -6,8 +6,8 @@ interface AddTaskContractView {
     fun getData()
     fun showMessageNullName()
     fun moveToMain()
-    fun getContext() : Context
-    fun checkId() : Int
+    fun getContext(): Context
+    fun checkId(): Int
     fun loudeTask(
         name: String,
         description: String,

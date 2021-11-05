@@ -8,5 +8,5 @@ interface DetailTaskContractView {
     fun getId()
     fun moveToMain()
     fun moveToEditActivity(id: Int)
-    fun getContext() : Context
+    fun getContext(): Context
 }

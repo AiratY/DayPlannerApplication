@@ -1,9 +1,8 @@
 package com.example.dayplannerapplication.presenter.usecase
 
-import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 class ConvertDateToFormat {
     fun execute(time: Date, format: String): String {

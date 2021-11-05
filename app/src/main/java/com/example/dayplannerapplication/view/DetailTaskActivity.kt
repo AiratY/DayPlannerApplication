@@ -44,7 +44,7 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
     }
 
     override fun loudeTask(descTask: descTask) {
-        dateTextView.text = descTask.date.toString()
+        dateTextView.text = descTask.date
         timeTextView.text = descTask.time
         nameTextView.text = descTask.name
         descTextView.text = descTask.desc
