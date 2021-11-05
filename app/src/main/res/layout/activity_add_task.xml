@@ -7,35 +7,66 @@
     tools:context=".view.AddTaskActivity">
 
 
-    <EditText
-        android:id="@+id/nameTaskEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/edit_text_margin"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/tittle_name_task"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/descTaskEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/edit_text_margin"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/tittle_description_task"
-        app:layout_constraintTop_toBottomOf="@+id/nameTaskEditText"
-        tools:layout_editor_absoluteX="158dp" />
 
-    <Button
-        android:id="@+id/saveTaskButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_button_save"
-        android:layout_marginBottom="@dimen/button_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/nameTaskEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edit_text_margin"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/tittle_name_task"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/descTaskEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edit_text_margin"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/tittle_description_task"
+                app:layout_constraintTop_toBottomOf="@+id/nameTaskEditText"
+                tools:layout_editor_absoluteX="158dp" />
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descTaskEditText"
+                android:calendarViewShown="false"
+                android:spinnersShown="true"/>
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/datePicker"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <Button
+                android:id="@+id/saveTaskButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_button_save"
+                android:layout_marginBottom="@dimen/button_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

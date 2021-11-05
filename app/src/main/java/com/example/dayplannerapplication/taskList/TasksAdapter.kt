@@ -11,7 +11,7 @@ import com.example.dayplannerapplication.FORMAT_TIME
 import com.example.dayplannerapplication.R
 import com.example.dayplannerapplication.data.Task
 import com.example.dayplannerapplication.presenter.usecase.ConvertDateToFormat
-import java.util.*
+import java.sql.Timestamp
 
 class TasksAdapter(private val onClick: (Task) -> Unit) :
     ListAdapter<Task, TasksAdapter.TaskViewHolder>(TaskDiffCallback) {
@@ -34,8 +34,8 @@ class TasksAdapter(private val onClick: (Task) -> Unit) :
         fun bind(task: Task) {
             currentTask = task
             taskNameTextView.text = task.name
-            taskStartTimeTextView.text = ConvertDateToFormat().execute(task.dateStart, FORMAT_TIME)
-            taskEndTimeTextView.text = ConvertDateToFormat().execute(task.dateEnd, FORMAT_TIME)
+            taskStartTimeTextView.text = ConvertDateToFormat().execute(Timestamp(task.dateStart), FORMAT_TIME)
+            taskEndTimeTextView.text = ConvertDateToFormat().execute(Timestamp(task.dateEnd), FORMAT_TIME)
         }
     }
 

@@ -2,11 +2,12 @@ package com.example.dayplannerapplication.taskList
 
 import androidx.lifecycle.ViewModel
 import com.example.dayplannerapplication.data.DataSource
+import kotlin.random.Random
 
 class TasksListViewModel(val dataSource: DataSource) : ViewModel() {
     val tasksLiveData = dataSource.getTaskList()
 
-    /*
+/*
     fun insertFlower(taskName: String?, flowerDescription: String?) {
         if (flowerName == null || flowerDescription == null) {
             return
@@ -21,5 +22,7 @@ class TasksListViewModel(val dataSource: DataSource) : ViewModel() {
         )
 
         dataSource.addFlower(newFlower)
-    }*/
+    }
+
+ */
 }

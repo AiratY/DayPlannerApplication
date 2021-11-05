@@ -1,5 +1,6 @@
 package com.example.dayplannerapplication
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,8 +14,9 @@ import com.example.dayplannerapplication.presenter.MainPresenter
 import com.example.dayplannerapplication.taskList.TasksAdapter
 import com.example.dayplannerapplication.view.AddTaskActivity
 import com.example.dayplannerapplication.view.DetailTaskActivity
+import com.example.dayplannerapplication.view.MainContractView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContractView{
     /*
     private val tasksListViewModel by viewModels<TasksListViewModel> {
         TasksListViewModelFactory(this)
@@ -58,14 +60,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showTasks(taskList: List<Task>) {
+    override fun showTasks(taskList: List<Task>) {
         tasksAdapter.submitList(taskList)
     }
 
-    fun showMessageNoTask() {
+    override fun showMessageNoTask() {
         Toast.makeText(applicationContext, "No tasks", Toast.LENGTH_SHORT).show()
     }
-    fun moveOnDetailTaskActivity(taskId: Int) {
+    override fun moveOnDetailTaskActivity(taskId: Int) {
         val intent = Intent(this, DetailTaskActivity()::class.java)
         intent.putExtra(TASK_ID, taskId)
         startActivity(intent)
@@ -73,10 +75,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mainPresenter.detachView()
+        mainPresenter.viewDestroy()
     }
 
-    fun moveOnAddTaskActivity() {
+    override fun moveOnAddTaskActivity() {
         startActivity(Intent(this, AddTaskActivity::class.java))
     }
+
+    override fun getContext() : Context = applicationContext
 }

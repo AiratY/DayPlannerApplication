@@ -1,13 +1,13 @@
 package com.example.dayplannerapplication.data
 
 import java.sql.Timestamp
-
+/*
 fun tasksList(): List<Task> {
     return listOf(
         Task(
             id = 1,
-            dateStart = Timestamp(147600000),
-            dateEnd = Timestamp(147600000),
+            dateStart = 147600000,
+            dateEnd = 147600000,
             name = "Поход в магазин",
             description = "Купить: батон, молоко, чай"
         ),
@@ -49,3 +49,5 @@ fun tasksList(): List<Task> {
 
     )
 }
+
+ */

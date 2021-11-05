@@ -3,38 +3,70 @@ package com.example.dayplannerapplication.presenter
 import com.example.dayplannerapplication.data.DataSource
 import com.example.dayplannerapplication.data.Task
 import com.example.dayplannerapplication.view.AddTaskContractView
+import com.example.dayplannerapplication.view.models.dataTask
 import com.example.dayplannerapplication.view.models.descTask
-import java.sql.Timestamp
 import java.util.*
+import kotlin.random.Random
 
 class AddTaskPresenter {
     private var view: AddTaskContractView? = null
-    private val dataSource = DataSource.getDataSource()
+    private var dataSource: DataSource? = null
+    private var isChange: Boolean = false
+    private var taskId: Int = -1
 
     fun attachView(contractView: AddTaskContractView) {
         view = contractView
+        dataSource = view?.getContext()?.let { DataSource.getDataSource(it) }
+        val taskId = view?.checkId()
+        if (taskId != null && taskId != -1){
+            getId(taskId)
+        }
     }
 
-    fun detachView() {
+    private fun getId(idTask: Int) {
+        val task: Task? = dataSource?.getTaskForId(idTask)
+        if (task != null) {
+            val year = Date(task.dateStart).year
+            val month = Date(task.dateStart).month
+            val day = Date(task.dateStart).date
+            val hours = Date(task.dateStart).hours
+            val min = Date(task.dateStart).minutes
+            taskId = idTask
+            isChange = true
+            view?.loudeTask(task.name, task.description, year, month, day, hours, min)
+        }
+    }
+
+    fun viewDestroy() {
         view = null
+        dataSource?.closeRealmConnection()
     }
 
-    fun save(){
+    fun save() {
         view?.getData()
     }
 
-    fun setData(descTask: descTask) {
-        if(descTask.name.isEmpty()){
+    fun setData(dataTask: dataTask) {
+        if (dataTask.name.isEmpty()) {
             view?.showMessageNullName()
         } else {
+            val id = if(isChange && taskId != -1){
+                taskId
+            } else {
+                Random.nextInt()
+            }
             val task = Task(
-                id = 0,
-                dateStart = Timestamp(Date().time),
-                dateEnd = Timestamp(Date().time),
-                name = descTask.name,
-                description = descTask.desc
+                id = id,
+                dateStart = dataTask.dateStart.time,
+                dateEnd = dataTask.dateEnd.time,
+                name = dataTask.name,
+                description = dataTask.description
             )
-            dataSource.addTask(task)
+            if(isChange){
+                dataSource?.changeTask(task)
+            } else {
+                dataSource?.addTask(task)
+            }
             view?.moveToMain()
         }
     }

@@ -1,5 +1,6 @@
 package com.example.dayplannerapplication.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -43,7 +44,7 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
     }
 
     override fun loudeTask(descTask: descTask) {
-        dateTextView.text = descTask.date
+        dateTextView.text = descTask.date.toString()
         timeTextView.text = descTask.time
         nameTextView.text = descTask.name
         descTextView.text = descTask.desc
@@ -51,7 +52,7 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachView()
+        presenter.viewDestroy()
     }
     override fun getId() {
         val bundle: Bundle? = intent.extras
@@ -70,4 +71,6 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
         intent.putExtra(TASK_ID, id)
         startActivity(intent)
     }
+
+    override fun getContext(): Context = applicationContext
 }

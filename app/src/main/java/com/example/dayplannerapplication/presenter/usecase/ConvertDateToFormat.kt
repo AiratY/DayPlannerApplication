@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ConvertDateToFormat {
-    fun execute(time: Timestamp, format: String): String {
+    fun execute(time: Date, format: String): String {
         val dateFormat: DateFormat = SimpleDateFormat(format)
-        return dateFormat.format(Date(time.time))
+        return dateFormat.format(time)
     }
 }
