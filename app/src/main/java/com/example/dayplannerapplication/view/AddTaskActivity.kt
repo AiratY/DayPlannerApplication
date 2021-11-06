@@ -3,6 +3,7 @@ package com.example.dayplannerapplication.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
@@ -26,6 +27,8 @@ class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_task)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
         init()
     }
     private fun init() {
@@ -90,5 +93,14 @@ class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
         datePicker.init(year, month, day, null)
         timePicker.hour = hours
         timePicker.minute = min
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if(item.itemId == android.R.id.home) {
+            this.finish()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 }

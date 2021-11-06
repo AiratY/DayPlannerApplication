@@ -38,7 +38,7 @@ class AddTaskPresenter {
 
     fun viewDestroy() {
         view = null
-        dataSource?.closeRealmConnection()
+        //dataSource?.closeRealmConnection()
     }
 
     fun save() {

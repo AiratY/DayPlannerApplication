@@ -41,7 +41,8 @@ class DataSource(val context: Context) {
     }
 
     fun getTaskForId(id: Int): Task? {
-        return realm.where<Task>().equalTo(KEY_ID_TASK, id).findFirst()
+        val tsk : Task = realm.where<Task>().equalTo(KEY_ID_TASK, id).findFirst() as Task
+        return tsk
     }
 
     fun getTaskListForDateTime(dateStart: Long, dateEnd: Long): List<Task> {
@@ -63,4 +64,5 @@ class DataSource(val context: Context) {
             }
         }
     }
+
 }

@@ -78,6 +78,6 @@ class MainPresenter {
 
     fun viewDestroy() {
         detachView()
-        dataSource?.closeRealmConnection()
+        //dataSource?.closeRealmConnection()
     }
 }

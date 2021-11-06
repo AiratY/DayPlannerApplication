@@ -20,7 +20,7 @@ class DetailTaskPresenter {
 
     fun viewDestroy() {
         view = null
-        dataSource?.closeRealmConnection()
+        //dataSource?.closeRealmConnection()
     }
 
     fun viewIsReady() {

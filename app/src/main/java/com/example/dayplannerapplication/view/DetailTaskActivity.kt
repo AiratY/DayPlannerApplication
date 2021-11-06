@@ -3,6 +3,7 @@ package com.example.dayplannerapplication.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -73,4 +74,13 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
     }
 
     override fun getContext(): Context = applicationContext
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if(item.itemId == android.R.id.home) {
+            this.finish()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+    }
 }
