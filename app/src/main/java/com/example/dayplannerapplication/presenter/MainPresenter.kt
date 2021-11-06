@@ -1,8 +1,8 @@
 package com.example.dayplannerapplication.presenter
 
-import android.content.Context
 import com.example.dayplannerapplication.data.DataSource
 import com.example.dayplannerapplication.data.Task
+import com.example.dayplannerapplication.presenter.usecase.SetTimeDate
 import com.example.dayplannerapplication.view.MainContractView
 import java.util.Date
 
@@ -10,31 +10,36 @@ class MainPresenter {
 
     private var view: MainContractView? = null
     private var dataSource: DataSource? = null
-    private lateinit var context: Context
+    private var dataStartLoude: Long = 0
+    private var dataEndLoude: Long = 0
 
-    private fun loadListTask() {
-        // val dataSource = DataSource.getDataSource(context)
+    private fun loadListTaskToday() {
         val dateStart = Date()
         val dateEnd = Date()
-        dateStart.hours = 0
-        dateStart.minutes = 0
-        dateEnd.hours = 23
-        dateEnd.minutes = 59
-        val taskList = dataSource?.getTaskListForDateTime(dateStart.time, dateEnd.time)
-        // val taskList = dataSource?.getTaskList()
-        if (taskList == null || taskList.count() == 0) {
-            view?.showMessageNoTask()
+        SetTimeDate().execute(dateStart,0,0)
+        SetTimeDate().execute(dateEnd,23,59)
+        loadTaskList(dateStart.time, dateEnd.time)
+    }
+
+    private fun loadTaskList(dateStart: Long, dateEnd: Long) {
+        if (dataStartLoude == dateStart && dataEndLoude == dateEnd) {
+            return
         } else {
-            view?.showTasks(taskList)
+            dataStartLoude = dateStart
+            dataEndLoude = dateEnd
+            val taskList = dataSource?.getTaskListForDateTime(dateStart, dateEnd)
+            if (taskList == null || taskList.count() == 0) {
+                view?.showMessageNoTask()
+            } else {
+                view?.showTasks(taskList)
+            }
         }
     }
 
     private fun loadListTaskForDateTime(year: Int, month: Int, day: Int) {
-        // val dataSource = DataSource.getDataSource(context)
         val dateStart = Date(year - 1900, month, day, 0, 0)
         val dateEnd = Date(year - 1900, month, day, 23, 59)
         val taskList = dataSource?.getTaskListForDateTime(dateStart.time, dateEnd.time)
-        //val taskList = dataSource?.getTaskList()
         if (taskList == null || taskList.count() == 0) {
             view?.showMessageNoTask()
         } else {
@@ -52,7 +57,7 @@ class MainPresenter {
 
     fun viewIsReady() {
         dataSource = view?.getContext()?.let { DataSource.getDataSource(it) }
-        loadListTask()
+        loadListTaskToday()
     }
 
     fun adapterClick(task: Task) {
@@ -69,10 +74,6 @@ class MainPresenter {
 
     fun viewDestroy() {
         detachView()
-        // dataSource?.closeRealmConnection()
-    }
-
-    fun close() {
-        dataSource?.closeRealmConnection()
+        //dataSource?.closeRealmConnection()
     }
 }

@@ -9,9 +9,8 @@ import io.realm.Realm
 import io.realm.kotlin.where
 
 class DataSource(val context: Context) {
-    // private val initialTaskList = tasksList()
-    // private val tasksLiveData = MutableLiveData(initialTaskList)
-    private lateinit var realm: Realm
+
+    private var realm: Realm
 
     init{
         RealmInit().execute(context)
@@ -45,17 +44,8 @@ class DataSource(val context: Context) {
         return realm.where<Task>().equalTo(KEY_ID_TASK, id).findFirst()
     }
 
-    /*fun getTaskList(): List<Task> {
-        return realm.where<Task>().findAll()
-
-    }*/
     fun getTaskListForDateTime(dateStart: Long, dateEnd: Long): List<Task> {
-
-        val taskList:List<Task> = realm.where<Task>().between(KEY_DATE_TASK, dateStart, dateEnd).findAll().sort(KEY_DATE_TASK)
-       //val taskList = someRealm.where<Task>().findAll()
-        val list = taskList.toList()
-        //realm.close()
-        return list
+        return realm.where<Task>().between(KEY_DATE_TASK, dateStart, dateEnd).findAll().sort(KEY_DATE_TASK).toList()
     }
 
     fun closeRealmConnection() {
