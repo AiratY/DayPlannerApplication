@@ -25,7 +25,7 @@ class AddTaskPresenter {
     private fun getId(idTask: Int) {
         val task: Task? = dataSource?.getTaskForId(idTask)
         if (task != null) {
-            val year = Date(task.dateStart).year
+            val year = Date(task.dateStart).year + 1900
             val month = Date(task.dateStart).month
             val day = Date(task.dateStart).date
             val hours = Date(task.dateStart).hours

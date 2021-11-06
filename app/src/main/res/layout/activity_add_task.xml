@@ -42,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/button_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descTaskEditText"
@@ -49,8 +50,9 @@
                 android:spinnersShown="true"/>
             <TimePicker
                 android:id="@+id/timePicker"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button_margin"
                 app:layout_constraintTop_toBottomOf="@id/datePicker"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_button_save"
-                android:layout_marginBottom="@dimen/button_margin"
+                android:layout_margin="@dimen/button_margin"
+                app:layout_constraintTop_toBottomOf="@id/timePicker"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>

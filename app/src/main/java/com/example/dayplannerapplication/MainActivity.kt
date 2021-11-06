@@ -17,10 +17,6 @@ import com.example.dayplannerapplication.view.DetailTaskActivity
 import com.example.dayplannerapplication.view.MainContractView
 
 class MainActivity : AppCompatActivity(), MainContractView {
-    /*
-    private val tasksListViewModel by viewModels<TasksListViewModel> {
-        TasksListViewModelFactory(this)
-    }*/
     private lateinit var tasksAdapter: TasksAdapter
     private lateinit var mainPresenter: MainPresenter
     private lateinit var message: TextView
@@ -48,16 +44,9 @@ class MainActivity : AppCompatActivity(), MainContractView {
             mainPresenter.fabOnClick()
         }
 
-        /*
-        tasksListViewModel.tasksLiveData.observe(this, {
-            it?.let {
-                tasksAdapter.submitList(it as MutableList<Task>)
-            }
-        })*/
-
         calendarView.setOnDateChangeListener { calendarView, year, month, day ->
-            val monthNormal = month // Отсчёт месяцев с 0
-            mainPresenter.calendarClick(year, monthNormal, day)
+            //val monthNormal = month // Отсчёт месяцев с 0
+            mainPresenter.calendarClick(year, month, day)
         }
     }
 

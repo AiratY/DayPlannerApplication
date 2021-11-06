@@ -10,29 +10,28 @@ class MainPresenter {
 
     private var view: MainContractView? = null
     private var dataSource: DataSource? = null
-    private var dataStartLoude: Long = 0
-    private var dataEndLoude: Long = 0
+    private lateinit var dateLoud: Date
+    private var yearLoad = 0
+    private var monthLoad = 0
+    private var dayLoad = 0
 
     private fun loadListTaskToday() {
         val dateStart = Date()
         val dateEnd = Date()
+        yearLoad = dateStart.year + 1900
+        monthLoad = dateStart.month
+        dayLoad = dateStart.date
         SetTimeDate().execute(dateStart,0,0)
         SetTimeDate().execute(dateEnd,23,59)
         loadTaskList(dateStart.time, dateEnd.time)
     }
 
     private fun loadTaskList(dateStart: Long, dateEnd: Long) {
-        if (dataStartLoude == dateStart && dataEndLoude == dateEnd) {
-            return
+        val taskList = dataSource?.getTaskListForDateTime(dateStart, dateEnd)
+        if (taskList == null || taskList.count() == 0) {
+            view?.showMessageNoTask()
         } else {
-            dataStartLoude = dateStart
-            dataEndLoude = dateEnd
-            val taskList = dataSource?.getTaskListForDateTime(dateStart, dateEnd)
-            if (taskList == null || taskList.count() == 0) {
-                view?.showMessageNoTask()
-            } else {
-                view?.showTasks(taskList)
-            }
+            view?.showTasks(taskList)
         }
     }
 
@@ -65,7 +64,12 @@ class MainPresenter {
     }
 
     fun calendarClick(year: Int, month: Int, day: Int) {
-        loadListTaskForDateTime(year, month, day)
+        if(year != yearLoad || month != monthLoad || day != dayLoad){
+            yearLoad = year
+            monthLoad = month
+            dayLoad = day
+            loadListTaskForDateTime(year, month, day)
+        }
     }
 
     fun fabOnClick() {
@@ -74,6 +78,6 @@ class MainPresenter {
 
     fun viewDestroy() {
         detachView()
-        //dataSource?.closeRealmConnection()
+        dataSource?.closeRealmConnection()
     }
 }
