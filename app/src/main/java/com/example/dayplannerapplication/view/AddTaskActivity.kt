@@ -9,12 +9,13 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dayplannerapplication.MESSAGE_ERROR_EDIT_TEXT
 import com.example.dayplannerapplication.MainActivity
 import com.example.dayplannerapplication.R
 import com.example.dayplannerapplication.TASK_ID
 import com.example.dayplannerapplication.presenter.AddTaskPresenter
 import com.example.dayplannerapplication.view.models.dataTask
-import java.util.*
+import java.util.Date
 
 class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
 
@@ -62,7 +63,7 @@ class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
     }
 
     override fun showMessageNullName() {
-        nameEditView.hint = "Поле Название обязательно для заполнения"
+        nameEditView.hint = MESSAGE_ERROR_EDIT_TEXT
     }
 
     override fun moveToMain() {
@@ -96,7 +97,7 @@ class AddTaskActivity : AppCompatActivity(), AddTaskContractView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if(item.itemId == android.R.id.home) {
+        return if (item.itemId == android.R.id.home) {
             this.finish()
             true
         } else {

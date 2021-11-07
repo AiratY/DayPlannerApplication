@@ -36,10 +36,10 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
         presenter.attachView(this)
         presenter.viewIsReady()
 
-        findViewById<Button>(R.id.changeTaskButton).setOnClickListener() {
+        findViewById<Button>(R.id.changeTaskButton).setOnClickListener {
             presenter.change()
         }
-        findViewById<Button>(R.id.deleteTaskButton).setOnClickListener() {
+        findViewById<Button>(R.id.deleteTaskButton).setOnClickListener {
             presenter.delete()
         }
     }
@@ -57,7 +57,7 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
     }
     override fun getId() {
         val bundle: Bundle? = intent.extras
-        var idTask: Int
+        val idTask: Int
         if (bundle != null) {
             idTask = bundle.getInt(TASK_ID)
             presenter.getId(idTask)
@@ -76,7 +76,7 @@ class DetailTaskActivity : AppCompatActivity(), DetailTaskContractView {
     override fun getContext(): Context = applicationContext
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if(item.itemId == android.R.id.home) {
+        return if (item.itemId == android.R.id.home) {
             this.finish()
             true
         } else {

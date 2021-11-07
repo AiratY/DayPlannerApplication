@@ -6,3 +6,4 @@ const val FORMAT_DATE = "dd.MM.yyyy"
 
 const val KEY_ID_TASK = "id"
 const val KEY_DATE_TASK = "dateStart"
+const val MESSAGE_ERROR_EDIT_TEXT = "Поле Название обязательно для заполнения"

@@ -5,7 +5,7 @@ import com.example.dayplannerapplication.R
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
-class RealmInit() {
+class RealmInit {
     fun execute(context: Context) {
         Realm.init(context)
 
@@ -16,6 +16,5 @@ class RealmInit() {
             .allowWritesOnUiThread(true)
             .build()
         Realm.setDefaultConfiguration(config)
-        //return Realm.getInstance(config)
     }
 }

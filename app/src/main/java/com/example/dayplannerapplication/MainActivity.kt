@@ -44,8 +44,7 @@ class MainActivity : AppCompatActivity(), MainContractView {
             mainPresenter.fabOnClick()
         }
 
-        calendarView.setOnDateChangeListener { calendarView, year, month, day ->
-            //val monthNormal = month // Отсчёт месяцев с 0
+        calendarView.setOnDateChangeListener { _, year, month, day ->
             mainPresenter.calendarClick(year, month, day)
         }
     }
@@ -53,17 +52,15 @@ class MainActivity : AppCompatActivity(), MainContractView {
     override fun showTasks(taskList: List<Task>) {
         message.visibility = View.INVISIBLE
         tasksAdapter.submitList(taskList)
-        //mainPresenter.close()
     }
 
     override fun showMessageNoTask() {
         message.visibility = View.VISIBLE
         tasksAdapter.submitList(null)
-        // Toast.makeText(applicationContext, "No tasks", Toast.LENGTH_SHORT).show()
     }
-    override fun moveOnDetailTaskActivity(taskId: Int) {
+    override fun moveOnDetailTaskActivity(id: Int) {
         val intent = Intent(this, DetailTaskActivity()::class.java)
-        intent.putExtra(TASK_ID, taskId)
+        intent.putExtra(TASK_ID, id)
         startActivity(intent)
     }
 

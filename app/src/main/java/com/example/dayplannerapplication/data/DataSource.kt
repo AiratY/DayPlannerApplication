@@ -12,7 +12,7 @@ class DataSource(val context: Context) {
 
     private var realm: Realm
 
-    init{
+    init {
         RealmInit().execute(context)
         realm = Realm.getDefaultInstance()
     }
@@ -41,8 +41,7 @@ class DataSource(val context: Context) {
     }
 
     fun getTaskForId(id: Int): Task? {
-        val tsk : Task = realm.where<Task>().equalTo(KEY_ID_TASK, id).findFirst() as Task
-        return tsk
+        return realm.where<Task>().equalTo(KEY_ID_TASK, id).findFirst()
     }
 
     fun getTaskListForDateTime(dateStart: Long, dateEnd: Long): List<Task> {
@@ -50,7 +49,7 @@ class DataSource(val context: Context) {
     }
 
     fun closeRealmConnection() {
-       RealmClose().execute(realm)
+        RealmClose().execute(realm)
     }
 
     companion object {
@@ -64,5 +63,4 @@ class DataSource(val context: Context) {
             }
         }
     }
-
 }
