@@ -12,13 +12,13 @@
         <activity
             android:name=".view.DetailTaskActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".view.MainActivity"></activity>
         <activity
             android:name=".view.AddTaskActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".view.MainActivity"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

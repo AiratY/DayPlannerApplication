@@ -1,4 +1,4 @@
-package com.example.dayplannerapplication
+package com.example.dayplannerapplication.view
 
 import android.content.Context
 import android.content.Intent
@@ -9,12 +9,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dayplannerapplication.R
+import com.example.dayplannerapplication.TASK_ID
 import com.example.dayplannerapplication.data.Task
 import com.example.dayplannerapplication.presenter.MainPresenter
 import com.example.dayplannerapplication.taskList.TasksAdapter
-import com.example.dayplannerapplication.view.AddTaskActivity
-import com.example.dayplannerapplication.view.DetailTaskActivity
-import com.example.dayplannerapplication.view.MainContractView
 
 class MainActivity : AppCompatActivity(), MainContractView {
     private lateinit var tasksAdapter: TasksAdapter

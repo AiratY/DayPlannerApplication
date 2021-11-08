@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dayplannerapplication.MESSAGE_ERROR_EDIT_TEXT
-import com.example.dayplannerapplication.MainActivity
 import com.example.dayplannerapplication.R
 import com.example.dayplannerapplication.TASK_ID
 import com.example.dayplannerapplication.presenter.AddTaskPresenter
